@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Overpass:ital,wght@0,100..900;1,100..900&family=Poppins&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Ysabeau+SC:wght@1..1000&display=swap');
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: "Itim", serif;
+  font-weight: 400;
+  border: 10px;
+  width: 100wh;
+  height: 100vh;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+/* main divv */
+.mainDiv{
+   border: 1px solid black;
+   padding: 10px;
+   border-radius: 10px;
+}
