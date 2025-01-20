@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,13 +22,16 @@ import {
   ref,
   set,
   get,
-  child,
-  update,
-  remove,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 const db = getDatabase();
 
 //  reference form the html
+//button which goes to sign in
+
+let signIn = document.querySelector("#signIn");
+signIn.addEventListener("click", () => {
+  window.location.replace("/signIn/signIn.html");
+});
 //   inputs
 let nameBox = document.querySelector("#nameBox");
 let fatherNameBox = document.querySelector("#fatherNameBox");
@@ -37,9 +41,6 @@ let genBox = document.querySelector("#genBox");
 let emailBox = document.querySelector("#emailBox");
 //   button
 let insBtn = document.querySelector("#insBtn");
-let delBtn = document.querySelector("#delBtn");
-let updBtn = document.querySelector("#updBtn");
-let selBtn = document.querySelector("#selBtn");
 //   function for the buttons here
 //   insert function
 let insertData = async () => {
@@ -92,57 +93,9 @@ let insertData = async () => {
   } catch (error) {
     console.log(error);
   }
-};
-//select function
-let selectData = () => {
-  const dbref = ref(db);
-  get(child(dbref, "TheStudents/" + rollBox.value))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        nameBox.value = snapshot.val().nameOfStd;
-        fatherNameBox.value = snapshot.val().fatherName;
-        secBox.value = snapshot.val().section;
-        genBox.value = snapshot.val().gender;
-        emailBox.value = snapshot.val().email;
-      } else {
-        alert("No data found!");
-      }
-    })
-    .catch((error) => {
-      alert("Unsuccessfull! " + error);
-    });
-};
-//Update funciton
-let updateData = () => {
-  update(ref(db, "TheStudents/" + rollBox.value), {
-    nameOfStd: nameBox.value,
-    fatherName: fatherNameBox.value,
-    section: secBox.value,
-    gender: genBox.value,
-    email: emailBox.value,
-  })
-    .then(() => {
-      alert("Data Updated success!");
-    })
-    .catch((error) => {
-      alert("No succes updating data! " + error);
-    });
-};
-//Delet funciton
-let deleteData = () => {
-  remove(ref(db, "TheStudents/" + rollBox.value))
-    .then(() => {
-      alert("Data Deletion success!");
-    })
-    .catch((error) => {
-      alert("No succes deleting data! " + error);
-    });
-};
-//   Here we are assgingin the button so hang on !
+  window.location.replace("/userArea/userArea.html");
+}; //   Here we are assgingin the button so hang on !
 insBtn.addEventListener("click", insertData);
-selBtn.addEventListener("click", selectData);
-delBtn.addEventListener("click", deleteData);
-updBtn.addEventListener("click", updateData);
 
 //this funciton is for the validation
 let validation = (e) => {
@@ -198,8 +151,3 @@ nameBox.addEventListener("input", validation);
 fatherNameBox.addEventListener("input", validation);
 rollBox.addEventListener("input", validation);
 emailBox.addEventListener("input", validation);
-
-let inUpButton = document.querySelector("#inUpButton");
-inUpButton.addEventListener("click", () => {
-  window.location.href = "/signUp/signUp.html";
-});
